@@ -49,9 +49,9 @@ to ensure that you haven't accidentally captured a strong reference to it elsewh
 =cut
 
 sub dispose($) {
+	die "Variable not defined" unless defined $_[0];
+	die "Variable was not a ref" unless ref $_[0];
 	Scalar::Util::weaken(my $copy = $_[0]);
-	die "Variable not defined" unless defined $copy;
-	die "Variable was not a ref" unless ref $copy;
 	undef $_[0];
 	die "Variable was not released" if defined $copy;
 }
