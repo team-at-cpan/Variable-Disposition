@@ -24,12 +24,15 @@ Variable::Disposition - helper functions for disposing of variables
 Provides some basic helper functions for making sure variables go away
 when you want them to.
 
-Currently only includes L</dispose>, other functions for use with L<Future>
-and L<IO::Async> are likely to be added later.
+Currently only includes L</dispose>, and exports this by default. Other
+functions for use with L<Future> and L<IO::Async> are likely to be added
+later.
 
 =cut
 
 our @EXPORT = our @EXPORT_OK = qw(dispose);
+
+use Scalar::Util ();
 
 =head1 METHODS
 
@@ -66,7 +69,7 @@ __END__
 
 =item * L<Devel::Refcount> - assert_oneref is almost identical to this, although it doesn't clear the variable it's called on
 
-=item * L<Closure::Explicit>
+=item * L<Closure::Explicit> - provides a sub{} wrapper that will complain if you capture a lexical without explicitly declaring that you're going to do that.
 
 =back
 
