@@ -1,27 +1,74 @@
 package Variable::Disposition;
-# ABSTRACT: 
+# ABSTRACT: dispose of variables
 use strict;
 use warnings;
+
+use parent qw(Exporter);
 
 our $VERSION = '0.001';
 
 =head1 NAME
 
-Variable::Disposition -
+Variable::Disposition - helper functions for disposing of variables
 
 =head1 SYNOPSIS
 
+ use feature qw(say);
+ use Variable::Disposition;
+ my $x = [];
+ dispose $x;
+ say '$x is no longer defined';
+
 =head1 DESCRIPTION
+
+Provides some basic helper functions for making sure variables go away
+when you want them to.
+
+Currently only includes L</dispose>, other functions for use with L<Future>
+and L<IO::Async> are likely to be added later.
+
+=cut
+
+our @EXPORT = our @EXPORT_OK = qw(dispose);
 
 =head1 METHODS
 
 =cut
+
+=head2 dispose
+
+Undefines the given variable, then checks that the original ref was destroyed.
+
+ my $x = [1,2,3];
+ dispose $x;
+ # $x is no longer defined.
+
+This is primarily intended for cases where you no longer need a variable, and want
+to ensure that you haven't accidentally captured a strong reference to it elsewhere.
+
+=cut
+
+sub dispose($) {
+	Scalar::Util::weaken(my $copy = $_[0]);
+	die "Variable not defined" unless defined $copy;
+	die "Variable was not a ref" unless ref $copy;
+	undef $_[0];
+	die "Variable was not released" if defined $copy;
+}
 
 1;
 
 __END__
 
 =head1 SEE ALSO
+
+=over 4
+
+=item * L<Devel::Refcount> - assert_oneref is almost identical to this, although it doesn't clear the variable it's called on
+
+=item * L<Closure::Explicit>
+
+=back
 
 =head1 AUTHOR
 
