@@ -5,7 +5,7 @@ use warnings;
 
 use parent qw(Exporter);
 
-our $VERSION = '0.001';
+our $VERSION = '0.002';
 
 =head1 NAME
 
@@ -48,6 +48,17 @@ Undefines the given variable, then checks that the original ref was destroyed.
 
 This is primarily intended for cases where you no longer need a variable, and want
 to ensure that you haven't accidentally captured a strong reference to it elsewhere.
+
+Note that this clears the B<caller>'s variable.
+
+This function is defined with a prototype of ($), since it is only intended for use
+on scalar variables. To clear multiple variables, use a L<foreach> loop:
+
+ my ($x, $y, $z) = ...;
+ dispose $_ for $x, $y, $z;
+ is($x, undef);
+ is($y, undef);
+ is($z, undef);
 
 =cut
 

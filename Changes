@@ -1,6 +1,11 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+	No new features.
+
+	Documentation:
+	* Expanded description of some details of the dispose() function
+	including mention of the ($) prototype.
 
 0.001     2014-08-30 20:43:59+01:00 Europe/London
 	Initial CPAN release
