@@ -1,6 +1,10 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+	No new features.
+
+	Bugs fixed:
+	* retain_future was returning undef for completed Futures
 
 0.002     2015-01-30 20:40:28+00:00 Europe/London
 	New features:
