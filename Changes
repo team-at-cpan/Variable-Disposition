@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.002     2015-01-30 20:40:28+00:00 Europe/London
 	New features:
 	* retain - holds on to a variable until dispose/exit
 	* retain_future - holds on to a Future until it's ready
