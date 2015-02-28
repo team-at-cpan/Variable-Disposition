@@ -1,7 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
-	No new features.
+	New features:
+	* retain - holds on to a variable until dispose/exit
+	* retain_future - holds on to a Future until it's ready
 
 	Documentation:
 	* Expanded description of some details of the dispose() function
