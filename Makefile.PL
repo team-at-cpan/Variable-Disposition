@@ -20,7 +20,9 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "MIN_PERL_VERSION" => "5.010001",
   "NAME" => "Variable::Disposition",
-  "PREREQ_PM" => {},
+  "PREREQ_PM" => {
+    "Future" => "0.30"
+  },
   "TEST_REQUIRES" => {
     "File::Spec" => 0,
     "IO::Handle" => 0,
@@ -30,7 +32,7 @@ my %WriteMakefileArgs = (
     "Test::More" => "0.98",
     "Test::Refcount" => 0
   },
-  "VERSION" => "0.003",
+  "VERSION" => "0.004",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -40,6 +42,7 @@ my %WriteMakefileArgs = (
 my %FallbackPrereqs = (
   "ExtUtils::MakeMaker" => "6.48",
   "File::Spec" => 0,
+  "Future" => "0.30",
   "IO::Handle" => 0,
   "IPC::Open3" => 0,
   "Test::CheckDeps" => "0.010",
