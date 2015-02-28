@@ -5,7 +5,7 @@ use warnings;
 
 use parent qw(Exporter);
 
-our $VERSION = '0.002';
+our $VERSION = '0.003';
 
 =head1 NAME
 
@@ -116,7 +116,7 @@ sub retain($) {
 =head2 retain_future
 
 Holds a copy of the given L<Future> until it's marked ready, then releases our copy.
-Does not use L</dispose> since that could interfere with other callbacks attached
+Does not use L</dispose>, since that could interfere with other callbacks attached
 to the L<Future>.
 
 Returns the original L<Future>.
@@ -127,7 +127,6 @@ sub retain_future {
 	my ($f) = @_;
 	die "Variable does not seem to be a Future, since it has no ->on_ready method" unless $f->can('on_ready');
 	$f->on_ready(sub { undef $f });
-	$f
 }
 
 1;
