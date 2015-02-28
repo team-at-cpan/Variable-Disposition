@@ -20,6 +20,12 @@ for my $resolution (qw(done fail cancel)) {
 	is($f, undef, 'goes away after dispose');
 }
 
+{
+	ok(retain_future(Future->done), 'can retain ->done Future');
+	ok(retain_future(Future->fail("...")), 'can retain ->failed Future');
+	ok(retain_future(Future->new->cancel), 'can retain ->cancelled Future');
+}
+
 
 done_testing;
 
