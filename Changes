@@ -1,6 +1,12 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+	No new features.
+
+	Dependencies:
+	* Require Future.pm, there's some test failures on older versions of Future and
+	I don't feel like messing around with version checks, given that everything else
+	I use depends on Future.pm anyway - patches welcome if anyone feels differently.
 
 0.003     2015-02-09 02:51:40+00:00 Europe/London
 	No new features.
