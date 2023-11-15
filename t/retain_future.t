@@ -14,7 +14,7 @@ for my $resolution (qw(done fail cancel)) {
 	is_refcount($f, 1, 'refcount is 1');
 	retain_future($f);
 	is_refcount($f, 2, 'refcount is now 2');
-	$f->$resolution('...');
+	$f->$resolution($resolution eq 'cancel' ? () : '...');
 	is_refcount($f, 1, 'refcount is back to 1 after ' . $resolution);
 	dispose($f);
 	is($f, undef, 'goes away after dispose');
