@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.005     2023-11-16 03:00:57+08:00 Asia/Singapore
     [Bugs fixed]
 
     - when Future::XS is installed, t/retain_future.t failed due to attempting
