@@ -119,6 +119,9 @@ Holds a copy of the given L<Future> until it's marked ready, then releases our c
 Does not use L</dispose>, since that could interfere with other callbacks attached
 to the L<Future>.
 
+Since Future 0.36, this behaviour is directly available via the L<Future/retain> method,
+so it is recommended to use that instead of this function.
+
 Returns the original L<Future>.
 
 =cut
@@ -126,7 +129,7 @@ Returns the original L<Future>.
 sub retain_future {
 	my ($f) = @_;
 	die "Variable does not seem to be a Future, since it has no ->on_ready method" unless $f->can('on_ready');
-	$f->on_ready(sub { undef $f });
+    return $f->retain;
 }
 
 1;
